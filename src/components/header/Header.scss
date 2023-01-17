@@ -1,14 +1,39 @@
 .header {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   border-bottom: 1px solid #ccc;
+  min-height: 44px;
+  background-color: var(--header--background-color);
+  color: var(--header--text-color);
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex: 1 1 auto;
 }
 
 .candidate, .time-remaining {
-  padding: 0.5rem;
+  padding: 0.5rem;  
+  flex: 0 0 auto;
+}
+
+.time-remaining {
+  color: var(--header--secondary-text-color)
+}
+
+.candidate {
+  font-weight: bold;
+  font-style: italic;
 }
 
 .theme-toggle {
+  height: 100%;
+  min-width: 100px;
   padding: 0.25em;
-  margin: 0.5em;
+  border-color: var(--header--secondary-text-color);
+  background-color: var(--header--background-color);
+  color: var(--header--text-color);
 }

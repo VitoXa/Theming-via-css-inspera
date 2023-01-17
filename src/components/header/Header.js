@@ -5,16 +5,20 @@ import './Header.scss';
 const Header = () => {
     const timeRemaining = useSelector((state) => state.time.timeRemaining);
     return (
-        <div className="header" style={{ backgroundColor: 'white' }}>
-            <div className="candidate">Front-end Test Candidate</div>
-            <div className="time-remaining">
-                { timeRemaining }
-                {' '}
-                seconds remaining
+        <div className="header">
+            <div className="info">
+                <div className="candidate">Front-end Test Candidate</div>
+                <div className="time-remaining">
+                    { timeRemaining }
+                    {' '}
+                    seconds remaining
+                </div>
             </div>
-            <button onClick={() => console.log('Toggle dark mode')} type="button" className="theme-toggle">
-                Dark mode
-            </button>
+            <div className="theme-toggle-container">
+                <button onClick={() => console.log('Toggle dark mode')} type="button" className="theme-toggle">
+                    Dark mode
+                </button>
+            </div>
         </div>
     );
 };
