@@ -4,3 +4,7 @@ body {
     margin: 0;
     padding: 0;
 }
+
+body * {
+    transition: color 0.2s, background-color 0.2s;
+}

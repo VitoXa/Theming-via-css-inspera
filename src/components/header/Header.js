@@ -1,9 +1,17 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setTheme } from '../../actions/themeActions';
 import './Header.scss';
 
 const Header = () => {
     const timeRemaining = useSelector((state) => state.time.timeRemaining);
+    const currentTheme = useSelector((state) => state.theme.themeName);
+
+    const dispatch = useDispatch();
+    const toggleTheme = () => {
+        dispatch(setTheme(currentTheme === 'light' ? 'dark' : 'light'));
+    };
+
     return (
         <div className="header">
             <div className="info">
@@ -15,8 +23,8 @@ const Header = () => {
                 </div>
             </div>
             <div className="theme-toggle-container">
-                <button onClick={() => console.log('Toggle dark mode')} type="button" className="theme-toggle">
-                    Dark mode
+                <button onClick={toggleTheme} type="button" className="theme-toggle">
+                    {currentTheme === 'light' ? 'Dark mode 🌚' : 'Light mode 🌝'}
                 </button>
             </div>
         </div>
