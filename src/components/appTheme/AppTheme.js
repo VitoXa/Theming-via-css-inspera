@@ -1,21 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import compileThemeVarSection from './compileTheme';
+import darkTheme from './themes/darkTheme';
 
 const ThemedContainer = ({ children }) => {
-    const theme = {
-        themeVariables: {
-            header: {
-                'secondary-text-color': '#A6A6A6',
-                'text-color': '#fff',
-                'background-color': '#323232',
-            },
-            'mpc-interaction': {
-                'label-color': '#fff',
-                'label-background': '#000',
-            },
-        },
-    };
+    const theme = darkTheme;
     return (
         <React.Fragment>
             <style>
