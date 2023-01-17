@@ -11,7 +11,11 @@ export default function (state = defaultState, action) {
             ...state,
             timeRemaining: action.timeRemaining,
         };
-
+    case types.DECREASE_TIME:
+        return {
+            ...state,
+            timeRemaining: Math.max(state.timeRemaining - action.seconds, 0),
+        };
     default:
         return state;
     }
