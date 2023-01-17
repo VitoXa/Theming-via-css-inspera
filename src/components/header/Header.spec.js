@@ -36,22 +36,6 @@ describe('Header', () => {
         expect(container.querySelector('.time-remaining').textContent).toBe('300 seconds remaining');
     });
 
-    it('render decrease remaining seconds', () => {
-        const store = configureStore();
-        store.dispatch(setRemainingTime(300));
-        act(() => {
-            render(
-                <Provider store={store}>
-                    <Header />
-                </Provider>, container,
-            );
-        });
-
-        act(() => jest.advanceTimersByTime(2000));
-
-        expect(container.querySelector('.time-remaining').textContent).toBe('298 seconds remaining');
-    });
-
     it('changes theme', () => {
         const store = configureStore();
         act(() => {

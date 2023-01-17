@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { setRemainingTime } from '../actions/timeActions';
+import { setRemainingTime, decreaseRemainingTime } from '../actions/timeActions';
 import timeService from '../services/timeService';
 import Header from './header/Header';
 import ThemedContainer from './appTheme/AppTheme';
@@ -9,6 +9,7 @@ import './App.scss';
 
 const GET_REMAINING_TIME_TIMER = 10 * 1000; // every 10 seconds
 let interval;
+let decreaseTimeInterval;
 
 const App = () => {
     const dispatch = useDispatch();
@@ -26,6 +27,20 @@ const App = () => {
         return () => {
             clearInterval(interval);
         };
+    }, []);
+
+    useEffect(() => {
+        let previousTime = Date.now();
+        const decreaseTime = () => {
+            const decreaseInSeconds = Math.floor((Date.now() - previousTime) / 1000);
+            if (decreaseInSeconds > 0) {
+                dispatch(decreaseRemainingTime(decreaseInSeconds));
+                previousTime = Date.now();
+            }
+        };
+        decreaseTimeInterval = setInterval(decreaseTime, 200);
+
+        return () => clearInterval(decreaseTimeInterval);
     }, []);
 
     return (

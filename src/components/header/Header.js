@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setTheme } from '../../actions/themeActions';
-import { decreaseTime } from '../../actions/timeActions';
 import './Header.scss';
 
 const Header = () => {
@@ -12,20 +11,6 @@ const Header = () => {
     const toggleTheme = () => {
         dispatch(setTheme(currentTheme === 'light' ? 'dark' : 'light'));
     };
-
-    useEffect(() => {
-        let previousTime = Date.now();
-        const decreaseRemainingTime = () => {
-            const decreaseInSeconds = Math.floor((Date.now() - previousTime) / 1000);
-            if (decreaseInSeconds > 0) {
-                dispatch(decreaseTime(decreaseInSeconds));
-                previousTime = Date.now();
-            }
-        };
-        const interval = setInterval(decreaseRemainingTime, 200);
-
-        return () => clearInterval(interval);
-    }, []);
 
     return (
         <div className="header">
